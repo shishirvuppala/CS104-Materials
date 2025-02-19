@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shishir's Website</title>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        function changePage(name){
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove("active")
+        });
+        document.getElementById(name).classList.add('active');
+    };
+    const hobbies ={
+        gaming:{
+            img: "./images/gaming.png",
+            desc: "I mostly enjoy sandbox games, RPG games, incrementals<br>and story-based games. Some of my favourite games/game series are Minecraft, Pokemon, Ace Attorney, Honkai Star Rail. In the future I’m also interested in trying to make my own games!"
+        },
+        keyboard:{
+            img: "./images/keyboard.jpg",
+            desc: "I started learning keyboard in 9th grade and continued till 11th grade. I stopped it in 12th grade because of JEE but now i try to practice keyboard every weekend. I have finished up to grade 3 in trinity keyboard and grade 2 in music theory."
+        },
+        debating:{
+            img: "./images/debating.jpg",
+            desc: "I started debating im my first semester and so far im really liking it. IIT Bombay mainly follows british parliamentary debate format. I’m not extremely good at debating yet but I hope to keep  getting better!"
+        },
+        mathematics:{
+            img: "./images/mathematics.png",
+            desc: "I’ve always had a interest in math since i was a kid. My interest in math usually manifests in watching many  math videos on youtube or solving math problems for fun.  Im also considering to get a minor in math or statistics  in the future"
+        },
+        tabletennis:{
+            img: "./images/tabletennis.jpg",
+            desc: "Table Tennis is my favourite sport. I played it somewhat  regularly from 6th to 8th but then stopped playing it  in lockdown period. I don’t regularly play it however i’m always up for a table tennis game."
+        },
+        musiclistening:{
+            img: "./images/gaming.png",
+            desc: "I mostly enjoy sandbox games, RPG games, incrementals and story-based games. Some of my favourite games/game series are Minecraft, Pokemon, Ace Attorney, Honkai Star Rail. In the future I’m also interested in trying to make my own games!"
+        },
+    };
+    function showHobby(hobby) {
+    document.getElementById("bighobbyimage").src = hobbies[hobby].img;
+    document.getElementById("bighobbyimage").style.border = "1px solid black";
+    document.getElementById("hobbydesc").innerHTML = hobbies[hobby].desc;
+    };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to my website!!!</h1>
+    <nav>
+        <button class = "navbutton" onclick="changePage('home')">Home</button>
+        <button class = "navbutton" onclick="changePage('contact')">Contact</button>
+        <button class = "navbutton" onclick="changePage('hobbies')">Hobbies</button>
+        <button class = "navbutton" onclick="changePage('achievements')">Achievements</button>
+        <button class = "navbutton" onclick="changePage('education')">Education</button>
+    </nav>
+    </header>
+    <div id="home" class="section active">
+    <div class="ellipticalbox" id="intro">
+        <p>
+            Hello all site visitors!<br> My name is <span class="sus" id="sus1">S</span>hi<span class="sus"  id="sus3">s</span>hir V<span class="sus" id="sus2">u</span>ppala and this<br>is a personal website i made for<br>one of my courses.
+        </p>
+    </div>
+    <div id="profimage">
+        <img src = "./images/choked.jpg" id="profi">
+        <p>This is me being choked by a dacoit</p>
+    </div>
+    <div class="ellipticalbox" id="about">
+        <p>
+            I am a freshman at IIT Bombay studying Computer Science Engineering<br>
+            set to graduate in 2028. <br>
+            As of the making of this website i’m in my second semester.<br>
+            My interests include mathematics, debating, gaming <br>
+            and computer science of course :D.<br>
+            Click on the tabs in the navbar to know more.<br>
+        </p>
+    </div>
+    <div id="testimony">
+        <h1>TESTIMONIES</h1>
+        <p class = "reviews" id="k">The best website i have seen till now!<br>-Krishna</p>
+        <p class = "reviews" id="s">the design of this website is somewhat nice i guess<br>-Sai</p>
+        <p class = "reviews" id="h">This is truly one of the <br>websites of all time<br>-Shishir</p>
+        <p class = "reviews" id="v">I can personally attest to this website being good<br>-Vuppala</p>
+        <p class = "reviews" id="r">Bruh that's me in the picture, i'm gonna sue<br>-Rohit</p>
+    </div>
+    <div id="hiddentext">
+        <p>A final note here;<br>For cryptic puzzle seekers;<br>There may be secrets.</p>
+    </div>
+    </div>
+    <div id="education" class="section">
+        <h2>EDUCATION</h2>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Institution Name</th>
+                <th>Grades</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Eurokids, Hyderabad</td>
+                <td>NUR - LKG</td>
+                <td>2009</td>
+                <td>2010</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>St. Peters School, Kaikondrahalli</td>
+                <td>UKG - 10th</td>
+                <td>2011</td>
+                <td>2022</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>JSS Public School, HSR</td>
+                <td>11th</td>
+                <td>2022</td>
+                <td>2023</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>GR International School, Kanakapura</td>
+                <td>12th</td>
+                <td>2023</td>
+                <td>2024</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>IIT Bombay</td>
+                <td>Btech CSE</td>
+                <td>2024</td>
+                <td>2028</td>
+            </tr>
+        </table>
+    </div>
+    <div id="contact" class="section">
+        <div class="ellipticalbox" id="initcont">
+        <p>You can contact me at:<br>
+            Email: vksshishir@gmail.com<br>
+            Contact number: 8050930872</p>
+        </div>
+        <div class = "ellipticalbox" id="socials">
+        <p >
+            Some of my social media handles are:<br>
+            Discord: soulessquintic<br>
+            Instagram: <a href="https://www.instagram.com/shishir_vuppala/">@shishir_vuppala</a> (dont really use it much tho)<br>
+            Github: <a href="https://github.com/shishirvuppala">shishirvuppala </a> (Literally nothing there rn but <br>hopefully that will change soon :D)
+        </p>
+        </div>
+    </div>
+    <div id = "achievements" class="section">
+        <h2> ACHIEVEMENTS </h2>
+        <div id = "achievementbox">
+            <ul>
+                <li>Got AIR 72 in JEE Mains.</li>
+                <li>Got AIR 67 in JEE Advanced(almost didnt make it to IIT Bombay cuz closing was 68)</li>
+                <li>Finished upto grade 3 in trinity keyboard and grade 2 in music theory.</li>
+                <li>Managed to get the highest not qualifying score in INMO 2024(i got 67 when the cutoff was 68)</li>
+                <li>Managed to get the highest not qualifying score in INCHO 2024(i got 54.5 and cutoff was 54.5 i still am 
+                    not sure why i didn’t qualify ¯\_(ツ)_/¯)</li>
+                <li>Qualified INMO 2023 and was a part of IMOTC 2023 which does mean i technically degraded from 
+                    11th to 12th (￣︿￣)</li>
+                <li>I made this website</li>
+                <li>Can you tell i'm running out of things</li>
+                <li>Participated in martial arts competition and got second place.(there were 2 competitors)</li>
+                <li>Participated in XLR8 and created the worst car in the event(unverified statistic)</li>
+                <li>Participated in Maths Bazinga hosted by MnP and got past the prelims and won a pretty cool mug 
+                    in the finals</li>
+                <li>Participated in the Freshman Debate Open hosted by WeSpeak and managed to reach the finals.</li>
+            </ul>
+        </div>
+    </div>
+    <div id = "hobbies" class="section">
+        <h2>HOBBIES</h2>
+        <h3>Click the icon of the hobby you want to know about!</h3>
+        <div id="hobbyicons">
+            <div class="hobbyimage" id="keyboard" onclick="showHobby('keyboard')">
+                <img src="./images/keyboard.jpg">
+                <p>keyboard</p>
+            </div>
+            <div class="hobbyimage" id="debating" onclick="showHobby('debating')">
+                <img src="./images/debating.jpg">
+                <p>debating</p>
+            </div>
+            <div class="hobbyimage" id="mathematics" onclick="showHobby('mathematics')">
+                <img src="./images/mathematics.png">
+                <p>mathematics</p>
+            </div>
+            <div class="hobbyimage" id="gaming" onclick="showHobby('gaming')">
+                <img src="./images/gaming.png">
+                <p>gaming</pp>
+            </div>
+            <div class="hobbyimage" id="tabletennis" onclick="showHobby('tabletennis')">
+                <img src="./images/tabletennis.jpg">
+                <p>tabletennis</pp>
+            </div>
+        </div>
+        <div id="hobbydetails">
+            <img id = "bighobbyimage" src="">
+            <p id = "hobbydesc"></p>
+        </div>
+    </div>
+</body>
+
