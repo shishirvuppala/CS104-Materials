@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sed -n 's/[^:]*\(:\)\([^:@:]*@[a-zA-Z0-9]*\.[a-zA-Z]*\)\(:investor\)/\2/p' email.txt | \
+grep -E '^[^:]*@[^:.@]*\.(com|org)$' | \
+grep -v '^michael' | \ # -v inverts match
+sort -u # -u removes duplicates

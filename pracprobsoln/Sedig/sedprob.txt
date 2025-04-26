@@ -1,0 +1,15 @@
+for 1st q s/^/fruit /
+
+for 2nd q s/3trillion_([^_]+)/\1_5trillion/g
+
+for 3rd q s/^[0-9]+.{4}([A-Za-z]{3})([0-9]{2})$/\2 \1/
+
+for 4th q 
+# Step 1: Lowercase everything first
+s/.*/\L&/
+
+# Step 2: Capitalize first letter of every word
+s/(^|[ .])([a-z])/\1\u\2/g
+
+# Step 3: After dot-space, wrap the next letter in brackets
+s/\. ([A-Z])/. [\1]/g

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Check if at least two arguments are provided (query element and array)
+if [[ $# -lt 2 ]]; then
+  echo "Usage: bash $0 <query element> <array of elements>"
+  exit 1
+fi
+
+# Store the query element
+query=$1
+# Store the array (from the second argument onward)
+array=("${@:2}")
+
+# Loop through the array and check if the query element exists
+found="NO"
+for element in "${array[@]}"; do
+  if [[ $element -eq $query ]]; then
+    found="YES"
+    break
+  fi
+done
+
+# Output the result
+echo $found
+
+Explanation:
+The script first checks if there are at least two arguments (the query element and the array).
+
+The query element is stored in the variable query, and the rest of the arguments (the array) are stored in the array variable.
+
+The script iterates through the array, checking if any element matches the query. If found, it sets the variable found to "YES" and breaks the loop.
+
+If the query is not found in the array, found remains "NO".
+
+Finally, the script outputs the value of found, which will be either "YES" or "NO".

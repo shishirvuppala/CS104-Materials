@@ -1,0 +1,43 @@
+BEGIN {
+    FS = OFS = " ";
+}
+
+NR == 1 {
+    header_line = $0 ";Comments"
+    print header_line
+    next
+}
+
+NR == 2 {
+    for (i = 2; i <= NF; i++) {
+        expected_ext[i] = $i
+    }
+    print $0 ";-"
+    next
+}
+
+{
+    status = "Correct Submission Format"
+    out = $1
+
+    for (i = 2; i <= NF; i++) {
+        file = $i
+        ext = expected_ext[i]
+s
+        # Handle missing submission
+        if (file == "-") {
+            out = out ";" file
+            continue
+        }
+
+        # Match only if it ends exactly with the required extension
+        if (file ~ "^[a-zA-Z0-9_]+\\" ext "$") {
+            out = out ";" file
+        } else {
+            out = out ";" file
+            status = "Wrong Submission Format"
+        }
+    }
+
+    print out ";" status
+}

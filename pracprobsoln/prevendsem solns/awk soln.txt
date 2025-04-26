@@ -1,0 +1,69 @@
+BEGIN {
+    FS = ","
+    OFS = ","
+    print "Entity,Duration,Principal,Type,CompoundRate,Amount"  # Print header for result.csv
+}
+
+NR > 1 {  # Skip header line
+    # Extract values
+    entity = $1
+    duration = $2
+    principal = $3
+    type = $4
+    rate = $5
+    
+    # Remove "years" from duration and calculate the number of years
+    gsub("years", "", duration)
+    
+    # Calculate compounded amount: Principal * (CompoundRate ^ Duration)
+    amount = principal * (rate ^ duration)
+    
+    # Print original line and append the calculated amount
+    print entity, duration, principal, type, rate, amount
+}
+
+and then stats.awk is
+BEGIN {
+    FS = ","
+    OFS = ":"
+    total_amount = 0
+}
+
+NR > 1 {  # Skip header line
+    # Read Type and Amount columns
+    type = $4
+    amount = $6
+    
+    # Sum the total amount
+    total_amount += amount
+    
+    # Accumulate the amount for each type
+    amount_by_type[type] += amount
+}
+
+END {
+    # Print total amount
+    print "Total:" total_amount
+    
+    # Create an array to hold the type percentages
+    for (type in amount_by_type) {
+        # Calculate the percentage (truncate to integer)
+        percentage = int((amount_by_type[type] / total_amount) * 100)
+        type_percentages[type] = percentage
+    }
+    
+    # Sort types by percentage in decreasing order
+    n = 0
+    for (type in type_percentages) {
+        types[n++] = type
+    }
+    
+    # Sort the types in decreasing order of percentage
+    n = asort(types, sorted_types)
+    
+    # Print type percentages
+    for (i = 1; i <= n; i++) {
+        type = sorted_types[i]
+        print type ":" type_percentages[type]
+    }
+}

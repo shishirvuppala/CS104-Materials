@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Define today's date (26 November 2008) in ddmmyyyy format
+today="26112008"
+
+# Create the "output" directory
+mkdir -p output
+
+# Iterate over all .jpg files in the current directory
+for file in *.jpg; do
+  # Extract the date part from the filename (assume format is filenameDDMMYYYY.jpg)
+  file_date=$(echo "$file" | grep -oP '\d{8}(?=\.jpg)')
+  
+  # If the file does not match the expected format, skip it
+  if [[ -z "$file_date" ]]; then
+    continue
+  fi
+
+  # Convert dates to YYYYMMDD format for comparison
+  file_date_ymd=$(echo "$file_date" | sed 's/\(..\)\(..\)\(....\)/\3\2\1/')
+
+  # Compare the dates
+  if [[ "$file_date" == "$today" ]]; then
+    # If the file's date is today, append " today"
+    new_name="${file%$file_date.jpg} ${file_date} today.jpg"
+  elif [[ "$file_date_ymd" -ge "20081119" && "$file_date_ymd" -le "20081125" ]]; then
+    # If the file's date is between 19 Nov 2008 and 25 Nov 2008, append " weekold"
+    new_name="${file%$file_date.jpg} ${file_date} weekold.jpg"
+  elif [[ "$file_date_ymd" -le "20081118" ]]; then
+    # If the file's date is on or before 18 Nov 2008, append " quiteold"
+    new_name="${file%$file_date.jpg} ${file_date} quiteold.jpg"
+  else
+    # If the date is later than today (27 Nov 2008 or later), delete the file
+    rm "$file"
+    continue
+  fi
+
+  # Copy and rename the file into the "output" directory
+  cp "$file" "output/$new_name"
+done
+
+
+Explanation:
+Directory Creation: The mkdir -p output command ensures that an "output" directory is created inside the current directory if it doesn't exist already.
+
+Date Handling: The script assumes that the filename format is {file_name}{ddmmyyyy}.jpg. It uses a grep command with a regular expression to extract the date part of the filename (the ddmmyyyy part).
+
+Date Comparison: The script compares the extracted date with today's date (26 November 2008). For date comparisons, the script:
+
+Converts the ddmmyyyy format to yyyymmdd format using sed.
+
+Then it compares the date to the predefined ranges and appends the appropriate suffix ("today", "weekold", "quiteold").
+
+File Deletion: If the file's date is later than 26 November 2008, the script deletes the file using rm.
+
+File Renaming and Copying: The script renames the files based on the date condition and copies them into the "output" directory.
